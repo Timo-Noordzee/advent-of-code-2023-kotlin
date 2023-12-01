@@ -66,7 +66,7 @@ class Day01 {
 
             // Check for each possible word if the substring starting at index i equals the word
             possibleWords.forEach { (word, value) ->
-                if (line.substring(i, (i + word.length).coerceAtMost(line.length)) == word) {
+                if (line.startsWith(word, i)) {
                     return value
                 }
             }
