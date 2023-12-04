@@ -30,7 +30,7 @@ class Day03 {
 
     @Setup
     fun setup() {
-        input = readInput("Day03").map { ".$it." }
+        input = readInput("Day03")
     }
 
     private inline fun processPartNumbers(action: (partNumber: Int, row: Int, range: IntRange) -> Unit) {
