@@ -24,3 +24,9 @@ fun Any?.println() = println(this)
 
 
 fun IntRange.expand(size: Int) = IntRange(first - size, last + size)
+
+fun checkAnswer(answer: Any, expected: Any) {
+    if (answer != expected) {
+        throw IllegalStateException("expected $expected as answer, but got $answer")
+    }
+}
