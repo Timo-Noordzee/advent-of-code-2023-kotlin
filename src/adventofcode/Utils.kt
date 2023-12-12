@@ -30,3 +30,15 @@ fun checkAnswer(answer: Any, expected: Any) {
         throw IllegalStateException("expected $expected as answer, but got $answer")
     }
 }
+
+fun String.repeat(amount: Int, separator: String): String {
+    if (amount == 1) return this
+
+    val stringBuilder = StringBuilder()
+    repeat(amount - 1) {
+        stringBuilder.append(this)
+        stringBuilder.append(separator)
+    }
+    stringBuilder.append(this)
+    return stringBuilder.toString()
+}
