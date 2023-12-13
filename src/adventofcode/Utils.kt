@@ -42,3 +42,14 @@ fun String.repeat(amount: Int, separator: String): String {
     stringBuilder.append(this)
     return stringBuilder.toString()
 }
+
+inline fun <T> List<T>.split(isDelimiter: (T) -> Boolean): List<List<T>> {
+    return fold(mutableListOf(mutableListOf<T>())) { acc, entry ->
+        if (isDelimiter(entry)) {
+            acc.add(mutableListOf())
+        } else {
+            acc.last().add(entry)
+        }
+        acc
+    }
+}
