@@ -1,15 +1,23 @@
 package adventofcode.model
 
-enum class Direction(val value: Int) {
-    UP(0),
-    RIGHT(1),
-    DOWN(2),
-    LEFT(3);
-}
+@JvmInline
+value class Direction(val value: Int) {
 
-operator fun Direction.unaryMinus() = when (this) {
-    Direction.UP -> Direction.DOWN
-    Direction.RIGHT -> Direction.LEFT
-    Direction.DOWN -> Direction.UP
-    Direction.LEFT -> Direction.RIGHT
+    val horizontalDelta
+        get() = if (value and 1 == 1) 2 - value else 0
+
+    val verticalDelta
+        get() = if (value and 1 == 0) value - 1 else 0
+
+    val opposite
+        get() = Direction(value xor 2)
+
+    companion object {
+        val UP = Direction(0)
+        val RIGHT = Direction(1)
+        val DOWN = Direction(2)
+        val LEFT = Direction(3)
+
+        val ALL = arrayOf(UP, RIGHT, DOWN, LEFT)
+    }
 }

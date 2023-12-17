@@ -70,7 +70,7 @@ class Day10 {
         } ?: error("cannot find starting position")
 
         // Find the first possible direction of travel from the starting position
-        val startingDirection = Direction.entries.firstOrNull { direction ->
+        val startingDirection = Direction.ALL.firstOrNull { direction ->
             val neighbor = start + direction
             val tile = input[neighbor]
             val pipe = pipes[tile] ?: return@firstOrNull false
