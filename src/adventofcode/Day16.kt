@@ -33,8 +33,8 @@ class Day16 {
         val n = input.first().length
         return listOf(
             (0 until n).map { x -> intArrayOf(x, m, 0) }, // beams moving up
-            (0 until m).map { y -> intArrayOf(0, y, 1) }, // beams moving right
-            (0 until n).map { x -> intArrayOf(x, 0, 2) }, // beams moving down
+            (0 until m).map { y -> intArrayOf(-1, y, 1) }, // beams moving right
+            (0 until n).map { x -> intArrayOf(x, -1, 2) }, // beams moving down
             (0 until m).map { y -> intArrayOf(n, y, 3) }, // beams moving left
         ).flatten().maxOf { (x, y, d) -> energize(x, y, d) }
     }
@@ -117,6 +117,6 @@ fun main() {
     checkAnswer(day16.part2(), 51)
 
     day16.input = readInput("Day16")
-    println("Part 1: ${day16.part1()}")
-    println("Part 2: ${day16.part2()}")
+    checkAnswerAndPrint(day16.part1(), 7860, "Part 1")
+    checkAnswerAndPrint(day16.part2(), 8331, "Part 2")
 }

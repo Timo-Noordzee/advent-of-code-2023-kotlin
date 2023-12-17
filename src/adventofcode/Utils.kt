@@ -20,10 +20,17 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
 
 fun IntRange.expand(size: Int) = IntRange(first - size, last + size)
 
-fun checkAnswer(answer: Any, expected: Any) {
-    if (answer != expected) {
+fun checkAnswer(answer: Any, expected: Any?) {
+    if (expected != null && answer != expected) {
         throw IllegalStateException("expected $expected as answer, but got $answer")
     }
+}
+
+fun checkAnswerAndPrint(answer: Any, expected: Any?, prefix: String) {
+    if (expected != null) {
+        checkAnswer(answer, expected)
+    }
+    println("$prefix: $answer")
 }
 
 fun String.repeat(amount: Int, separator: String): String {
