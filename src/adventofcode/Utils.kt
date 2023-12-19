@@ -33,6 +33,47 @@ fun checkAnswerAndPrint(answer: Any, expected: Any?, prefix: String) {
     println("$prefix: $answer")
 }
 
+/**
+ * Split the original IntRange into a pair of IntRange
+ *
+ * The *first* IntRange is an IntRange containing all values smaller than the [maxValue] or null when all values in
+ * the original IntRange are greater than [maxValue]
+ *
+ * The *second* IntRange is an IntRange containing all values greater than or equal to the [maxValue] or null when
+ * all values in the original IntRange are smaller than the [maxValue]
+ *
+ * @param maxValue the value used to partition the original IntRange
+ * @return a pair containing the IntRanges smaller than (first) the [maxValue], and greater than or equal to (second) the [maxValue]
+ */
+fun IntRange.partition(maxValue: Int): Pair<IntRange?, IntRange?> = when {
+    maxValue < first -> Pair(null, this)
+    maxValue > last -> Pair(this, null)
+    else -> Pair(start until maxValue, maxValue..last)
+}
+
+/**
+ * Read and append all numbers in a String to a List
+ *
+ * Example: "{x=787,m=2655,a=1222,s=2876}" results in a list containing [787, 2655, 1222, 2876]
+ *
+ * @return a list containing all numbers found in the string
+ */
+fun String.readNumbers(): List<Int> {
+    val numbers = mutableListOf<Int>()
+    var index = 0
+    while (index < length) {
+        if (this[index].isDigit()) {
+            var num = this[index++] - '0'
+            while (index < length && this[index].isDigit()) {
+                num = num * 10 + (this[index++] - '0')
+            }
+            numbers.add(num)
+        }
+        index++
+    }
+    return numbers
+}
+
 fun String.repeat(amount: Int, separator: String): String {
     if (amount == 1) return this
 
