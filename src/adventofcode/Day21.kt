@@ -25,7 +25,7 @@ class Day21 {
 
     @Setup
     fun setup() {
-        input = readInput("Day20")
+        input = readInput("Day21")
     }
 
     private fun traverse(input: List<String>): Map<Point, Int> {
