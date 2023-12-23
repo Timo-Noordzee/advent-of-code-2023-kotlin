@@ -12,3 +12,11 @@ operator fun Point.plus(direction: Direction) = copy(
     x = x + direction.horizontalDelta,
     y = y + direction.verticalDelta
 )
+
+operator fun Point.minus(direction: Direction) = copy(
+    x = x - direction.horizontalDelta,
+    y = y - direction.verticalDelta
+)
+
+val Point.neighbors
+    get() = arrayOf(copy(x = x + 1), copy(x = x - 1), copy(y = y + 1), copy(y = y - 1))
